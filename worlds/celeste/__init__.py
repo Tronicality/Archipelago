@@ -83,7 +83,6 @@ class CelesteWorld(World):
             "cassettes": [item.name for item in item_table if item.item_type == CelesteItemType.CASSETTE],
             "levels": [item.name for item in item_table if item.item_type == CelesteItemType.COMPLETION],
             "hearts": [item.name for item in item_table if item.item_type == CelesteItemType.GEMHEART],
-            "trap": [item.name for item in item_table if item.item_type == CelesteItemType.TRAP],
         }
 
     def generate_basic(self) -> None:
