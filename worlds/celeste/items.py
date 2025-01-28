@@ -4,7 +4,7 @@ from typing import Dict, List
 from BaseClasses import ItemClassification
 from random import randint, choices
 
-from .data import VICTORY_UUID, TRAP_UUID, BaseData, CelesteItem, CelesteItemType
+from .data import VICTORY_UUID, TRAP_UUID, BaseData, CelesteItem, CelesteItemType, CelesteSide
 from .options import CelesteGameOptions, ProgressionSystem
 
 
@@ -103,7 +103,6 @@ class OriginalItemGenerator(ItemGenerator):
         self._fix_broken_options()
 
         strawberry_count = 0
-        cassette_count = 0
         gemheart_count = 0
         goal_level = self._options.get_goal_level()
         trap_chance = self._options.trap_chance
@@ -120,12 +119,8 @@ class OriginalItemGenerator(ItemGenerator):
                 if strawberry_count > self._options.berries_required.value:
                     uuid, name, item_type, classification = self.set_filler_item(uuid, name, item_type, trap_chance)
                 strawberry_count += 1
-            elif item_type == CelesteItemType.CASSETTE:
-                if cassette_count > self._options.cassettes_required.value:
-                    uuid, name, item_type, classification = self.set_filler_item(uuid, name, item_type, trap_chance)
-                cassette_count += 1
             elif item_type == CelesteItemType.GEMHEART:
-                if gemheart_count > self._options.hearts_required.value:
+                if gemheart_count > self._options.hearts_required.value and level.side == CelesteSide.C_SIDE:
                     uuid, name, item_type, classification = self.set_filler_item(uuid, name, item_type, trap_chance)
                 gemheart_count += 1
             
@@ -171,7 +166,7 @@ class OriginalItemGenerator(ItemGenerator):
         
         return trap_data
     
-    def set_filler_item(self, uuid, name, item_type, trap_chance):
+    def set_filler_item(self, uuid: int, name: str, item_type: CelesteItemType, trap_chance: int) -> tuple[int, str, CelesteItemType, ItemClassification]:
         if trap_chance > 0 and randint(1, 100) <= trap_chance:
             # Filler item has become a trap item
             trap_uuid, trap_name = self.choose_trap()
@@ -188,3 +183,5 @@ class OriginalItemGenerator(ItemGenerator):
                 return (TRAP_UUID + 1, trap)
             case "Seeker Trap":
                 return (TRAP_UUID + 2, trap)
+            case _:
+                raise Exception(f"Trap {trap} has not been implemented")
