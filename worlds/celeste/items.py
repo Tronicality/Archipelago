@@ -163,6 +163,7 @@ class OriginalItemGenerator(ItemGenerator):
         trap_data["Theo Crystal Trap"] = self._options.theo_crystal_trap
         trap_data["Badeline Chasers Trap"] = self._options.badeline_chasers_trap
         trap_data["Seeker Trap"] = self._options.seeker_trap
+        trap_data["Stamina Trap"] = self._options.stamina_trap
         
         return trap_data
     
@@ -183,5 +184,7 @@ class OriginalItemGenerator(ItemGenerator):
                 return (TRAP_UUID + 1, trap)
             case "Seeker Trap":
                 return (TRAP_UUID + 2, trap)
+            case "Stamina Trap":
+                return (TRAP_UUID + 3, trap)
             case _:
                 raise Exception(f"Trap {trap} has not been implemented")

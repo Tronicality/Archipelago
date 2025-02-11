@@ -100,7 +100,7 @@ class TheoCrystalTrap(Range):
     display_name = "Badeline Clone Trap Weight"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 25
 
 class BadelineChaserTrap(Range):
     """The weight of Badeline Chaser Traps in the trap pool.
@@ -108,7 +108,7 @@ class BadelineChaserTrap(Range):
     display_name = "Badeline Clone Trap Weight"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 25
 
 class SeekerTrap(Range):
     """The weight of Seeker Traps in the trap pool.
@@ -116,8 +116,15 @@ class SeekerTrap(Range):
     display_name = "Seeker Trap Weight"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 25
 
+class StaminaTrap(Range):
+    """The weight of Stamina Traps in the trap pool.
+    This trap will remove some of your stamina."""
+    display_name = "Stamina Trap Weight"
+    range_start = 0
+    range_end = 100
+    default = 25
 
 @dataclass
 class CelesteGameOptions(PerGameCommonOptions):
@@ -135,6 +142,7 @@ class CelesteGameOptions(PerGameCommonOptions):
     theo_crystal_trap: TheoCrystalTrap
     badeline_chasers_trap: BadelineChaserTrap
     seeker_trap: SeekerTrap
+    stamina_trap: StaminaTrap
 
     _goal_level_map = {
         GoalLevel.option_chapter_7_summit_a: CelesteLevel(CelesteChapter.THE_SUMMIT, CelesteSide.A_SIDE),

@@ -196,9 +196,11 @@ class BaseData:
                 cls._item_name_to_id[row[_COLUMN_ITEM_NAME]] = uuid
 
         cls._item_name_to_id["Strawberry"] = STRAWBERRY_UUID
+        
         cls._item_name_to_id["Theo Crystal Trap"] = TRAP_UUID
         cls._item_name_to_id["Badeline Chasers Trap"] = TRAP_UUID + 1
         cls._item_name_to_id["Seeker Trap"] = TRAP_UUID + 2
+        cls._item_name_to_id["Stamina Trap"] = TRAP_UUID + 3
 
         for row in cls._region_data:
             uuid = cls._region_hash(CelesteChapter(row[_COLUMN_LEVEL]), CelesteSide(row[_COLUMN_SIDE]))
