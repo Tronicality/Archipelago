@@ -106,5 +106,7 @@ class CelesteWorld(World):
             "progression_system",
             "disable_heart_gates",
             "death_link",
-            "death_link_amnesty"
+            "death_link_amnesty",
+            "trap_death_duration",
+            "trap_room_duration",
         )

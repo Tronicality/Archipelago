@@ -73,6 +73,7 @@ class DisableHeartGates(Toggle):
 
     display_name = "Disable Heart Gates"
 
+
 class DeathLinkAmnesty(Range):
     """
     How many deaths it takes to send a DeathLink
@@ -81,6 +82,59 @@ class DeathLinkAmnesty(Range):
     range_start = 1
     range_end = 50
     default = 20
+
+class TrapChance(Range):
+    """The chance for any junk item in the pool to be replaced by a trap."""
+    display_name = "Trap Chance"
+    range_start = 0
+    range_end = 100
+    default = 1
+
+class TrapDeathDuration(Range):
+    """The amount of deaths that the trap will take to deactivate"""
+    display_name = "Trap Death Duration"
+    range_start = 0
+    range_end = 100
+    default = 10
+
+class TrapRoomDuration(Range):
+    """The amount of rooms passed that the trap will take to deactivate"""
+    display_name = "Trap Room Duration"
+    range_start = 0
+    range_end = 100
+    default = 3
+
+class TheoCrystalTrap(Range):
+    """The weight of Theo Crystal Traps in the trap pool.
+    This trap will spawn Badeline Chasers."""
+    display_name = "Badeline Clone Trap Weight"
+    range_start = 0
+    range_end = 100
+    default = 25
+
+class BadelineChaserTrap(Range):
+    """The weight of Badeline Chaser Traps in the trap pool.
+    This trap will spawn Badeline Chasers."""
+    display_name = "Badeline Clone Trap Weight"
+    range_start = 0
+    range_end = 100
+    default = 25
+
+class SeekerTrap(Range):
+    """The weight of Seeker Traps in the trap pool.
+    This trap will spawn seekers."""
+    display_name = "Seeker Trap Weight"
+    range_start = 0
+    range_end = 100
+    default = 25
+
+class StaminaTrap(Range):
+    """The weight of Stamina Traps in the trap pool.
+    This trap will remove some of your stamina."""
+    display_name = "Stamina Trap Weight"
+    range_start = 0
+    range_end = 100
+    default = 25
 
 celeste_option_groups = [
     OptionGroup("Goal Options", [
@@ -95,6 +149,15 @@ celeste_option_groups = [
         DisableHeartGates,
         DeathLink,
         DeathLinkAmnesty,
+    ]),
+    OptionGroup("Trap Options", [
+        TrapChance,
+        TrapDeathDuration,
+        TrapRoomDuration,
+        TheoCrystalTrap,
+        BadelineChaserTrap,
+        SeekerTrap,
+        StaminaTrap,
     ])
 ]
 
@@ -109,6 +172,14 @@ class CelesteGameOptions(PerGameCommonOptions):
     disable_heart_gates: DisableHeartGates
     death_link: DeathLink
     death_link_amnesty: DeathLinkAmnesty
+
+    trap_chance: TrapChance
+    trap_death_duration: TrapDeathDuration
+    trap_room_duration: TrapRoomDuration
+    theo_crystal_trap: TheoCrystalTrap
+    badeline_chasers_trap: BadelineChaserTrap
+    seeker_trap: SeekerTrap
+    stamina_trap: StaminaTrap
 
     _goal_level_map = {
         GoalLevel.option_chapter_7_summit_a: CelesteLevel(CelesteChapter.THE_SUMMIT, CelesteSide.A_SIDE),
